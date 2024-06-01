@@ -85,18 +85,23 @@ router.put('/:id', (req, res) => {
     console.log('idToUpdate', idToupdate);
     console.log('type of idToUpdate', typeof idToupdate);
     console.log('req.body', req.body);
+    let newTaskTitle = req.body.taskTitle;
     let newDesription = req.body.description;
+    let newCheckListItem = req.body.checkListItems;
+    let newDueDate = req.body.dueDate;
+    let newIsComplete = req.body.isComplete;
+    
     console.log(newDesription);
     console.log(typeof newDesription);
-    let queryText = `UPDATE treats SET "description"=$1 WHERE id=$2;`;
+    let queryText = `UPDATE "to_dos" SET "task_title"=$1, "description"=$2, "check_list_items"=$3, "due_date"=$4, "is_complete"=$5  WHERE id=$6;`;
 
-    pool.query(queryText, [newDesription, idToupdate])
+    pool.query(queryText, [newTaskTitle, newDesription, newCheckListItem, newDueDate,newIsComplete, idToupdate])
         .then(dbResult => {
             console.log('item has been updated:', dbResult);
             res.sendStatus(200);
         })
         .catch(dbError => {
-            console.log('Something went wrong while updating treat: ', dbError)
+            console.log('Something went wrong while updating todo: ', dbError)
         })
   });
 
