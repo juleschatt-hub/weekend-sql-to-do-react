@@ -24,12 +24,17 @@ useEffect(fetchToDos, []);
   
   return (
     <div>
-      <h1>TO DO APP</h1>
-      <p>
-                    Here is the array:
-                    {JSON.stringify(toDoArray)}
-                </p>
+      <header>
+        <h1>TO DO APP</h1>
+      </header>
+      <main>
+        <p>Here is the array:{JSON.stringify(toDoArray)}</p>
+      </main>
+      <footer>
+        
+      </footer>
     </div>
+  
   );
 
 }
