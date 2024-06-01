@@ -61,6 +61,7 @@ router.delete('/:id', (req, res) => {
 });
 // PUT ROUTES
 
+//PUT route to toggle whether todo is complete or not
 router.put('/toggle/:id', (req, res) => {
     let { id } = req.params;
     // This query will switch from true to false and false to true
@@ -79,6 +80,8 @@ router.put('/toggle/:id', (req, res) => {
         })
 });
 
+//PUT route to update all fields in a row.  I think i will have to make sure to pull in the values
+//for input fields when updating on front end so other values do not get changed to NULL when submitting an UPDATE
 router.put('/:id', (req, res) => {
     console.log(req.params);
     let idToupdate = req.params.id;
