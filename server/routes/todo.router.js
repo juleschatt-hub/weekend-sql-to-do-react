@@ -4,12 +4,11 @@ const pool = require('../modules/pool.js');
 
 // GET
 router.get('/', (req, res) => {
-    // res.send('test');
     let queryText = 'SELECT * FROM "to_dos";';
     pool.query(queryText)
         .then((dbResult) => {
             let toDos = dbResult.rows;
-            console.log(toDos);
+            //console.log(toDos);
             res.send(toDos);
         })
         .catch((dbError => {
@@ -46,17 +45,18 @@ pool.query(queryText, [taskTitle, description, checkListItems, dueDate, isComple
 
 });
 // DELETE
+//deletes rows from DB by ID so there will need to be a button on the front end for each row.
 router.delete('/:id', (req, res) => {
     let { id } = req.params;
     const sqlText = `DELETE FROM "to_dos" WHERE "id" = $1;`;
     pool.query(sqlText, [id])
         .then((result) => {
-            console.log(`Got stuff back from the database`, result);
+            //console.log(`Got stuff back from the database`, result);
             res.sendStatus(201);
         })
         .catch((error) => {
-            console.log(`Error making database query ${sqlText}`, error);
-            res.sendStatus(500); // Good server always responds
+            console.log(`Error in DELETE route: ${sqlText}`, error);
+            res.sendStatus(500); 
         })
 });
 // PUT ROUTES
@@ -64,7 +64,6 @@ router.delete('/:id', (req, res) => {
 //PUT route to toggle whether todo is complete or not
 router.put('/toggle/:id', (req, res) => {
     let { id } = req.params;
-    // This query will switch from true to false and false to true
     const sqlText = `
         UPDATE "to_dos" SET "is_complete" = NOT "is_complete" 
         WHERE "id" = $1;
@@ -76,7 +75,7 @@ router.put('/toggle/:id', (req, res) => {
         })
         .catch((error) => {
             console.log(`Error making database query ${sqlText}`, error);
-            res.sendStatus(500); // Good server always responds
+            res.sendStatus(500); 
         })
 });
 
