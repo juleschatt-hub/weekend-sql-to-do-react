@@ -29,7 +29,7 @@ let isComplete = newTodo.isComplete;
 
 console.log('req.body:', req.body);
 
-let queryText = `INSERT INTO "to_dos" ("task_title", "description", "check_list_items", "due_date", "is_complete")
+let queryText = `INSERT INTO "to_dos" (task_title, description, check_list_items, due_date, is_complete)
 VALUES ($1, $2, $3, $4, $5);`
 
 pool.query(queryText, [taskTitle, description, checkListItems, dueDate, isComplete])
