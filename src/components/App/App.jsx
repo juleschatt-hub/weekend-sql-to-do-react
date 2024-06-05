@@ -7,6 +7,7 @@ function App () {
 
 let [toDoArray, setTodoArray] = useState([]);
 
+
 const fetchToDos = () => {
   axios.get('/api/todo')
     .then((response) => {
@@ -23,17 +24,26 @@ useEffect(fetchToDos, []);
 
   
   return (
-    <div>
+    <>
       <header>
         <h1>TO DO APP</h1>
+        {JSON.stringify(toDoArray)}
       </header>
       <main>
-        <p>Here is the array:{JSON.stringify(toDoArray)}</p>
+        
+          {toDoArray.map((todo) => { return (
+          <>
+            <h2 key={todo.id}>{todo.task_title}</h2>
+            <p key={todo.id}>{todo.description}</p>
+          </>
+          
+          )})}
+        
       </main>
       <footer>
         
       </footer>
-    </div>
+    </>
   
   );
 
