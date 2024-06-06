@@ -24,8 +24,8 @@ useEffect(fetchToDos, []);
 
 const [newTodoTitle, setNewTodoTitle] = useState('');
 const [newTodoDescription, setNewTodoDescription] = useState('');
-const [newTodoDueDate, setNewTodoDuedate] = useState();
-const [newTodoIsComplete, setNewTodoIsComplete] = useState();
+const [newTodoDueDate, setNewTodoDuedate] = useState('');
+const [newTodoIsComplete, setNewTodoIsComplete] = useState(false);
 
 //ADD NEW TODO FUNCTION
 const addToDo = (event) => {
@@ -44,7 +44,7 @@ const addToDo = (event) => {
     setNewTodoTitle('');
     setNewTodoDescription('');
     setNewTodoDuedate('');
-    setNewTodoIsComplete();
+    setNewTodoIsComplete(false);
   })
   .catch((error) => {
     console.log('failed to post new TODO:', error);
@@ -70,9 +70,8 @@ const addToDo = (event) => {
           <label htmlFor="dueDate">Complete By:</label>
           <input id="dueDate" onChange={(event) => setNewTodoDuedate(event.target.value)} value={newTodoDueDate} />
 
-          {/* <label htmlFor="taskTitle">Task Title:</label>
-          <input id="taskTitle" onChange={(event) => setNewTodoTitle(event.target.value)} value={newTodoTitle} />
- */}
+           
+ 
 
 
 
