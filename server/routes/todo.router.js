@@ -51,7 +51,7 @@ router.delete('/:id', (req, res) => {
     const sqlText = `DELETE FROM "to_dos" WHERE "id" = $1;`;
     pool.query(sqlText, [id])
         .then((result) => {
-            //console.log(`Got stuff back from the database`, result);
+            console.log('item deleted', result);
             res.sendStatus(201);
         })
         .catch((error) => {

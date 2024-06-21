@@ -51,24 +51,36 @@ const addToDo = (event) => {
   })
 } //END addTodo
 
+//START delete todo
+const deleteTodo = (id) => {
+  axios.delete(`/api/todo/${id}`)
+  .then((response) => {
+    console.log('deleting todo worked:', response);
+    fetchToDos();
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+} //END Delete todo
+
   return (
     <>
       <header>
         <h1>TO DO APP</h1>
-        {JSON.stringify(toDoArray)}
+        
       </header>
       
       <main>
         <h2>Create a Todo</h2>
         <form onSubmit={addToDo}>
           <label htmlFor="taskTitle">Task Title:</label>
-          <input id="taskTitle" onChange={(event) => setNewTodoTitle(event.target.value)} value={newTodoTitle} />
+          <input id="taskTitle" type="text" onChange={(event) => setNewTodoTitle(event.target.value)} value={newTodoTitle} />
 
           <label htmlFor="description">Task Description:</label>
-          <input id="description" onChange={(event) => setNewTodoDescription(event.target.value)} value={newTodoDescription} />
+          <input id="description" type="text" onChange={(event) => setNewTodoDescription(event.target.value)} value={newTodoDescription} />
 
           <label htmlFor="dueDate">Complete By:</label>
-          <input id="dueDate" onChange={(event) => setNewTodoDuedate(event.target.value)} value={newTodoDueDate} />
+          <input id="dueDate" type="date" onChange={(event) => setNewTodoDuedate(event.target.value)} value={newTodoDueDate} />
 
            
  
@@ -79,12 +91,15 @@ const addToDo = (event) => {
           <button type="submit">Add new TODO</button>
 
         </form>
-        <div id="todo-card">
+        <div className="todos">
         
           {toDoArray.map((todo) => { return (
           <>
-            <h2 key={todo.id}>{todo.task_title}</h2>
-            <p>{todo.description}</p>
+            <div className='todo-card'>
+              <h2 key={todo.id}>{todo.task_title}</h2>
+              <p>{todo.description}</p>
+              <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+            </div>
           </>
           
           )})}
