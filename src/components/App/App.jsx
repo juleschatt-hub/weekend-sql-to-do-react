@@ -63,6 +63,19 @@ const deleteTodo = (id) => {
   })
 } //END Delete todo
 
+const toggleComplete = (id) => {
+  console.log('every day im togglin', id);
+
+  axios.put(`/api/todo/toggle/${id}`)
+  .then((response) => {
+    console.log('toggling complete worked:', response);
+    fetchToDos();
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+}
+
   return (
     <>
       <header>
@@ -98,7 +111,10 @@ const deleteTodo = (id) => {
             <div className='todo-card'>
               <h2 key={todo.id}>{todo.task_title}</h2>
               <p>{todo.description}</p>
-              <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+              <button type="button" onClick={() => deleteTodo(todo.id)}>Delete</button>
+              <label htmlFor="is-complete">Complete: </label>
+              <input id="is-complete" type="checkbox" onClick={() => toggleComplete(todo.id)} />
+
             </div>
           </>
           
