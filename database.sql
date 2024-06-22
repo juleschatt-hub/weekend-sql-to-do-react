@@ -9,7 +9,7 @@ CREATE TABLE "to_dos" (
 
 SELECT * FROM to_dos;
 
-INSERT INTO "to_dos" ("task_title", "description", "check_list_items", "due_date", "is_complete")
+INSERT INTO "to_dos" ("task_title", "description", "due_date", "is_complete")
 VALUES 
 ('Get Groceries', 'The task is complete when all ites from grocery list have been purchased', '2024-07-21', false),
 ('Get a Job', 'Apply to jobs and prepare for interviews', '2024-10-25', true),
