@@ -76,6 +76,7 @@ const toggleComplete = (id) => {
   })
 }
 
+
   return (
     <>
       <header>
@@ -94,27 +95,19 @@ const toggleComplete = (id) => {
 
           <label htmlFor="dueDate">Complete By:</label>
           <input id="dueDate" type="date" onChange={(event) => setNewTodoDuedate(event.target.value)} value={newTodoDueDate} />
-
-           
- 
-
-
-
           
           <button type="submit">Add new TODO</button>
-
         </form>
         <div className="todos">
         
           {toDoArray.map((todo) => { return (
           <>
-            <div className='todo-card'>
+            <div className={todo.is_complete ? 'complete' : 'incomplete'}>
               <h2 key={todo.id}>{todo.task_title}</h2>
               <p>{todo.description}</p>
+              <p>{todo.due_date}</p>
               <button type="button" onClick={() => deleteTodo(todo.id)}>Delete</button>
-              <label htmlFor="is-complete">Complete: </label>
-              <input id="is-complete" type="checkbox" onClick={() => toggleComplete(todo.id)} />
-
+              <button id="is-complete" type="checkbox" onClick={() => toggleComplete(todo.id)}>{todo.is_complete ? '✅' : 'Mark Complete'} </button>
             </div>
           </>
           

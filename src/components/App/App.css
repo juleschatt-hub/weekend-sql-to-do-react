@@ -27,9 +27,19 @@
  
 }
 
-.todo-card {
+.incomplete {
   border: solid;
   background-color: grey;
+  float: left;
+  width: 200px;
+  margin: 40px;
+  padding: 5px;
+  
+}
+
+.complete {
+  border: solid;
+  background-color: green;
   float: left;
   width: 200px;
   margin: 40px;
