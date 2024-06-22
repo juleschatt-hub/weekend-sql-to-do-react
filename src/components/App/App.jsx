@@ -105,7 +105,7 @@ const toggleComplete = (id) => {
             <div className={todo.is_complete ? 'complete' : 'incomplete'}>
               <h2 key={todo.id}>{todo.task_title}</h2>
               <p>{todo.description}</p>
-              <p>{todo.due_date}</p>
+              <p>Complete by: {todo.due_date}</p>
               <button type="button" onClick={() => deleteTodo(todo.id)}>Delete</button>
               <button id="is-complete" type="checkbox" onClick={() => toggleComplete(todo.id)}>{todo.is_complete ? '✅' : 'Mark Complete'} </button>
             </div>
